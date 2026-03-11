@@ -1,14 +1,90 @@
-<!-- Fragmento 1, el HEAD -->
+<!-- Fragmento #1 que irá en el head de todas las páginas, así se incluye todo lo necesario de configuración-->
+    <head th:fragment="head">
+        <title>proyecto</title>
+        <meta charset="UTF-8"/>
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>    
+        <script th:src="@{/js/rutinas.js}"> </script>
+    </head>
 
 
+<!-- Fragmento #2  define el encabezado de las páginas, en concreto el menú y enlaces rápidos -->
+        <header th:fragment="header" class="header bg-info text-white p-3">
+            <div class="d-flex justify-content-between align-items-center"> 
+                <h1>Inventario Medico</h1> 
+                <div class=" d-flex align-items-center gap-2">
+                <label class="align-items-end" name="usuario">[[#{general.logged}]]:</label>
+                <select name="usuario">
+                    <option>[[#{general.cliente}]]</option>
+                    <option>[[#{general.vendedor}]]</option>
+                    <option>[[#{general.admin}]]</option>
+                </select>
+                </div>
+            </div>
+            
+
+        </header>
+
+<!-- mensaje titulo  -->
+<div th:fragment="subtitulo" class="d-flex justify-content-start p-3">
+    <h3>
+        [[#{general.bienvenida}]]
+    </h3>
+</div>
+<!-- fragmento#3 nav bar  cada seccion  -->
+<section th:fragment="navbar">
+   <nav class="nav nav-pills nav-justified p-4">
+  
+  <a class="nav-link active" href="#">[[#{general.catalogo}]]</a>
+  <a class="nav-link active" href="#">[[#{general.MisCompras}]]</a>
+  <a class="nav-link active" href="#">[[#{general.Perfil}]]</a>
+  
+</nav> 
+</section>
+
+<!-- Fragmento #4 para el catalogo-->
+<section th:fragment="catalogo" class="container p-4">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
+        <div th:each="1:6" class="col">
+            <div class="card h-100 shadow-sm">
+
+                <div class="d-flex justify-content-center align-item-center bg-light p-3" style="height:200px;">
+                    <!--<img th:src="" class="card-img-top" alt="alt">-->
+                </div>
+
+                <div class="card-header bg-white">
+                    <h5 class="card-title text-center text-truncate mb-0">  </h5>
+                </div>
+
+                <div class="card-body d-flex flex-column">
+                    <p class="card-text text-muted text-truncate mb-auto">detalle</p>
+                </div>
+
+                <div class="card-footer bg-white d-flex justify-content-between align-text-center">
+                    <div class="fw-bold">
+                        <!--<span class="text-success h5">p</span>
+                        <span th:if=""class="badge text-bg-success ms-2"> unidades</span>
+                        <span th:if=""class="badge text-bg-danger ms-2">Agotado!</span>-->
+                    </div>
+                    <!--<form action="" method="" class="d-inline">
+                        <input type="hidden" th:value="" name="idProducto"/>
+                        <button type="submit" class="btn btn-sm btn-primary" th:disabled="" onclick="addCart(this.form)">
+                            <i class="fas fa-cart-plus"></i>
+                        </button>
+                    </form>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+</section>
 
 
-
-
-
-<!-- Fragmento 2, el HEADER -->
-
-
-
-
-<!-- Fragmento 3, el FOOTER -->
+<!-- Fragmento #5 define el footer de las páginas -->
+        <footer th:fragment="footer" class="p-2 mt-5">
+            <p class="lead text-center">[[#{plantilla.derechos}]] &COPY;</p>
+        </footer>
