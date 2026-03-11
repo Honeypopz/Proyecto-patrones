@@ -1,4 +1,4 @@
-package proyecto;
+package com.proyecto;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.storage.Storage;
