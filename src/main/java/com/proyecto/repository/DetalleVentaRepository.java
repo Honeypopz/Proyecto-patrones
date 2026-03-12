@@ -11,12 +11,14 @@ import com.proyecto.domain.Usuario;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Jason
  */
+@Repository
 public interface DetalleVentaRepository extends JpaRepository<DetalleVenta,Integer>{
     // para ver productos en una venta
-    public List<DetalleVenta> findByVentaId(Integer idVenta);
+    public List<DetalleVenta> findByVentaIdVenta(Integer idVenta);
 }

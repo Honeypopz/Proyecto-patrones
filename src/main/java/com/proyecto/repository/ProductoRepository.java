@@ -10,15 +10,15 @@ import com.proyecto.domain.Usuario;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Jason
  */
+@Repository
 public interface ProductoRepository extends JpaRepository<Producto,Integer>{
     //por categoria
-    public List<Producto> findByCategoriaId(Integer idCategoria);
-    
-    //todos
-    public List<Producto> findAll();
+    public List<Producto> findByCategoria_IdCategoria(Integer idCategoria);
+
 }
