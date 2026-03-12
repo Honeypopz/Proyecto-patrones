@@ -11,14 +11,16 @@ import com.proyecto.domain.Venta;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Jason
  */
+@Repository
 public interface VentaRepository extends JpaRepository<Venta,Integer>{
     //para buscar ventas por cliente
-     public List<Venta> findByClienteID(Integer idCliente);
+     public List<Venta> findByCliente_IdCliente(Integer idCliente);
      
      
 }
