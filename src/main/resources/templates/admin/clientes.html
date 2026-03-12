@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="general/fragmentos :: head"></head>
+
+    <body>
+
+        <header th:replace="general/fragmentos :: header"></header>
+
+        <div class="container">
+
+            <h2>Panel Admin</h2>
+
+            <div style="display:flex; gap:15px; margin-top:20px; margin-bottom:30px;">
+
+                <a th:href="@{/admin/dashboard}"
+                   style="flex:1; padding:15px; background:#0d6efd; color:white; text-align:center; text-decoration:none; border-radius:6px;">
+                    Dashboard
+                </a>
+
+                <a th:href="@{/admin/productos}"
+                   style="flex:1; padding:15px; background:#198754; color:white; text-align:center; text-decoration:none; border-radius:6px;">
+                    Productos
+                </a>
+
+                <a th:href="@{/admin/clientes}"
+                   style="flex:1; padding:15px; background:#0dcaf0; color:white; text-align:center; text-decoration:none; border-radius:6px;">
+                    Clientes
+                </a>
+
+                <a th:href="@{/admin/ventas}"
+                   style="flex:1; padding:15px; background:#ffc107; color:black; text-align:center; text-decoration:none; border-radius:6px;">
+                    Ventas
+                </a>
+
+                <a th:href="@{/admin/reportes}"
+                   style="flex:1; padding:15px; background:#dc3545; color:white; text-align:center; text-decoration:none; border-radius:6px;">
+                    Reportes
+                </a>
+
+            </div>
+
+            <h4>Lista de Clientes</h4>
+
+            <table class="table table-bordered">
+
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Total Comprado</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Marcela</td>
+                        <td>marcela@email.com</td>
+                        <td>8888-8888</td>
+                        <td>₡3500</td>
+                    </tr>
+
+                    <tr>
+                        <td>Ramiro</td>
+                        <td>ramiro@email.com</td>
+                        <td>7777-7777</td>
+                        <td>₡1250</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </body>
+</html>
