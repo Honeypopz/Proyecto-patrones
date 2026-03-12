@@ -38,13 +38,13 @@
 </div>
 <!-- fragmento#3 nav bar  cada seccion  -->
 <section th:fragment="navbar">
-    <nav class="nav nav-pills nav-justified custom-nav p-4 m-5">
-
-        <a class="nav-link custom-item-nav active" href="#">[[#{general.catalogo}]]</a>
-        <a class="nav-link custom-item-nav" href="#">[[#{general.MisCompras}]]</a>
-        <a class="nav-link custom-item-nav" href="#">[[#{general.Perfil}]]</a>
-
-    </nav> 
+   <nav class="nav nav-pills nav-justified p-4">
+  
+  <a class="nav-link active" href="#">[[#{general.catalogo}]]</a>
+  <a class="nav-link active" th:href="#">[[#{general.MisCompras}]]</a>
+  <a class="nav-link active" href="#">[[#{general.Perfil}]]</a>
+  
+</nav> 
 </section>
 
 <!-- Fragmento #4 para el catalogo-->

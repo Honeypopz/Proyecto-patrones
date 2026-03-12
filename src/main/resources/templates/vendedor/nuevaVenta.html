@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{general/fragmentos :: head}"></head>
+
+    <body>
+
+        <header th:replace="~{general/fragmentos :: header}"></header>
+
+        <div class="container mt-4">
+
+            <h2>Panel del Vendedor</h2>
+
+            <div style="display:flex; gap:15px; margin-top:20px; margin-bottom:30px;">
+
+                <a th:href="@{/vendedor/dashboard}"
+                   style="flex:1; padding:15px; background:#0d6efd; color:white; text-align:center; text-decoration:none; border-radius:6px;">
+                    Dashboard
+                </a>
+
+                <a th:href="@{/vendedor/nuevaVenta}"
+                   style="flex:1; padding:15px; background:#198754; color:white; text-align:center; text-decoration:none; border-radius:6px;">
+                    Nueva Venta
+                </a>
+
+                <a th:href="@{/vendedor/misVentas}"
+                   style="flex:1; padding:15px; background:#dc3545; color:white; text-align:center; text-decoration:none; border-radius:6px;">
+                    Mis Ventas
+                </a>
+
+            </div>
+
+            <h3>Nueva Venta</h3>
+
+            <form style="max-width:500px;">
+
+                <div style="margin-bottom:15px;">
+                    <label>Cliente</label>
+                    <input type="text" class="form-control" placeholder="Nombre del cliente">
+                </div>
+
+                <div style="margin-bottom:15px;">
+                    <label>Producto</label>
+                    <select class="form-control">
+                        <option>Seleccionar producto</option>
+                        <option>Guantes médicos</option>
+                        <option>Mascarillas</option>
+                        <option>Alcohol</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom:15px;">
+                    <label>Cantidad</label>
+                    <input type="number" class="form-control">
+                </div>
+
+                <div style="margin-bottom:15px;">
+                    <label>Precio</label>
+                    <input type="number" class="form-control">
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                    Registrar Venta
+                </button>
+
+            </form>
+
+        </div>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+
+    </body>
+</html>
