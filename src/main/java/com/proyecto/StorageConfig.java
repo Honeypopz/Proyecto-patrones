@@ -1,4 +1,4 @@
-package proyecto;
+package com.proyecto;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.storage.Storage;
@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
-@Configuration
+//@Configuration
 public class StorageConfig {
 
     @Value("${firebase.json.path}")
