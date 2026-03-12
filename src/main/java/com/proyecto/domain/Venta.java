@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.caso1.domain;
+package com.proyecto.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,6 +19,7 @@ import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 import lombok.Data;
 
 /**
@@ -27,30 +28,36 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name="detalle_ventas")
-public class DetalleVenta implements Serializable{
+@Table(name="ventas")
+public class Venta implements Serializable{
     private static final long serialVersionUID=1L;
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id_detalle")
-    private Integer idDetalle;
+    @Column(name="id_venta")
+    private Integer idVenta;
+    @Column(name="numero_venta")
+    private String numeroVenta;
     
-   
-    private Integer cantidad;
+    private LocalDate fecha;
+    private BigDecimal total;
+    @Enumerated(EnumType.STRING)
+    private Estado estado;
     
-    @Column(name="precio_unitario")
-    private BigDecimal precioUnitario;
-    
-    private BigDecimal subtotal;
+    public enum Estado{
+        pendiente,completada
+    }
     
     @ManyToOne
-    @JoinColumn(name="venta_id")
-    private Venta venta;
+    @JoinColumn(name="cliente_id")
+    private Cliente cliente;
     
     @ManyToOne
-    @JoinColumn(name="producto_id")
-    private Producto producto;
+    @JoinColumn(name="vendedor_id")
+    private Usuario vendedor;
     
+    @OneToMany(mappedBy = "venta")
+    
+    private List<DetalleVenta> detalles;
     
 }

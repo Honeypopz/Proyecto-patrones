@@ -1,4 +1,4 @@
-package com.caso1.service;
+package com.proyecto.service;
 
 import com.google.cloud.storage.BlobId;
 import com.google.cloud.storage.BlobInfo;

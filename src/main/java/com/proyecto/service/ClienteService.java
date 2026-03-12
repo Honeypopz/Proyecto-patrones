@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.caso1.service;
+package com.proyecto.service;
 
-import com.caso1.domain.Cliente;
-import com.caso1.domain.Producto;
-import com.caso1.repository.ClienteRepository;
+import com.proyecto.domain.Cliente;
+import com.proyecto.domain.Producto;
+import com.proyecto.repository.ClienteRepository;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
