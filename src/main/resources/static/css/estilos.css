@@ -1,0 +1,34 @@
+body{
+    
+    background-color: f0f0f0;
+}
+.custom-header{
+    background-color: #6610f2;
+}
+
+.custom-nav{
+    background-color: #bfbfbf;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.custom-nav .nav-link{
+    color: black;
+    border-radius: 20px;
+}
+
+.custom-nav .nav-link.active{
+    background-color: #e6e6e6;
+    color: black;
+}
+
+.custom-footer{
+    
+    
+    background-color: #6610f2;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    
+
+}

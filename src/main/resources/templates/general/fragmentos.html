@@ -1,35 +1,37 @@
 <!-- Fragmento #1 que irá en el head de todas las páginas, así se incluye todo lo necesario de configuración-->
-    <head th:fragment="head">
-        <title>proyecto</title>
-        <meta charset="UTF-8"/>
-        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
-        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
-        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>    
-        <script th:src="@{/js/rutinas.js}"> </script>
-    </head>
+<head th:fragment="head">
+    <title>Venta Equipo Medico</title>
+    <meta charset="UTF-8"/>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>    
+    <script th:src="@{/js/rutinas.js}"></script> 
+    <link th:href="@{/css/estilos.css}" rel="stylesheet"/>
+</head>
 
 
 <!-- Fragmento #2  define el encabezado de las páginas, en concreto el menú y enlaces rápidos -->
-        <header th:fragment="header" class="header bg-info text-white p-3">
-            <div class="d-flex justify-content-between align-items-center"> 
-                <h1>Inventario Medico</h1> 
-                <div class=" d-flex align-items-center gap-2">
-                <label class="align-items-end" name="usuario">[[#{general.logged}]]:</label>
-                <select name="usuario">
-                    <option>[[#{general.cliente}]]</option>
-                    <option>[[#{general.vendedor}]]</option>
-                    <option>[[#{general.admin}]]</option>
-                </select>
-                </div>
-            </div>
-            
+<header th:fragment="header" class="header custom-header text-white p-3" >
+    <div class="d-flex justify-content-between align-items-center"> 
+        <h1>Inventario Medico</h1> 
+        <div class=" d-flex align-items-center gap-2">
+            <label class="align-items-end" name="usuario">[[#{general.logged}]]:</label>
+            <select name="usuario" class="form-select" aria-label="Default select example">
+                <option selected>[[#{general.opcion}]]</option>
+                <option>[[#{general.cliente}]]</option>
+                <option>[[#{general.vendedor}]]</option>
+                <option>[[#{general.admin}]]</option>
+            </select>
+        </div>
+    </div>
 
-        </header>
+
+</header>
 
 <!-- mensaje titulo  -->
-<div th:fragment="subtitulo" class="d-flex justify-content-start p-3">
+<div th:fragment="subtitulo" class="d-flex justify-content-start pt-5 pb-3 px-5" style="background-color: #f0f0f0 ;" >
     <h3>
         [[#{general.bienvenida}]]
     </h3>
@@ -85,6 +87,6 @@
 
 
 <!-- Fragmento #5 define el footer de las páginas -->
-        <footer th:fragment="footer" class="p-2 mt-5">
-            <p class="lead text-center">[[#{Derechos Reservados}]] &COPY;</p>
-        </footer>
+<footer th:fragment="footer" class="p-2 custom-footer text-white">
+    <p class="lead text-center fw-bold">[[#{plantilla.derechos}]] &COPY;</p>
+</footer>
