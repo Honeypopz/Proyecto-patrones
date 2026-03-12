@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{general/fragmentos :: head}"></head>
+
+    <body>
+
+        <header th:replace="~{general/fragmentos :: header}"></header>
+
+        <div class="container mt-4">
+
+            <h2>Panel del Vendedor</h2>
+
+            <div style="display:flex; gap:15px; margin-top:20px; margin-bottom:30px;">
+
+                <a th:href="@{/vendedor/dashboard}"
+                   style="flex:1; padding:15px; background:#0d6efd; color:white; text-align:center; text-decoration:none; border-radius:6px;">
+                    Dashboard
+                </a>
+
+                <a th:href="@{/vendedor/nuevaVenta}"
+                   style="flex:1; padding:15px; background:#198754; color:white; text-align:center; text-decoration:none; border-radius:6px;">
+                    Nueva Venta
+                </a>
+
+                <a th:href="@{/vendedor/misVentas}"
+                   style="flex:1; padding:15px; background:#dc3545; color:white; text-align:center; text-decoration:none; border-radius:6px;">
+                    Mis Ventas
+                </a>
+
+            </div>
+
+            <h3>Resumen de Ventas</h3>
+
+            <div style="display:flex; gap:20px; margin-top:20px;">
+
+                <div style="flex:1; background:#f2f2f2; padding:20px; border-radius:8px; text-align:center;">
+                    <h4>Total ventas hoy</h4>
+                    <h2>5</h2>
+                </div>
+
+                <div style="flex:1; background:#f2f2f2; padding:20px; border-radius:8px; text-align:center;">
+                    <h4>Total vendido</h4>
+                    <h2>₡650000</h2>
+                </div>
+
+                <div style="flex:1; background:#f2f2f2; padding:20px; border-radius:8px; text-align:center;">
+                    <h4>Comisión</h4>
+                    <h2>₡32500</h2>
+                </div>
+
+            </div>
+
+        </div>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+
+    </body>
+</html>
