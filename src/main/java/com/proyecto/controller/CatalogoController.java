@@ -15,19 +15,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author Jason
  */
 @Controller
-@RequestMapping("/catalogo")
+@RequestMapping("/")
 public class CatalogoController {
+
     private final ProductoService productoService;
 
     public CatalogoController(ProductoService productoService) {
         this.productoService = productoService;
     }
-    
-    @GetMapping("/listado")
-    public String listado(Model model){
-        var productos=productoService.getProductos();
-        model.addAttribute("productos",productos);
-        return "catalogo/listado";
+
+    @GetMapping({"", "/"})
+    public String inicio(Model model){
+        var productos = productoService.getProductos();
+        model.addAttribute("productos", productos);
+        return "index";
     }
-    
+
 }
+    
+
