@@ -30,18 +30,8 @@ public class ClienteService {
         return clienteRepository.findAll();
     }
     
-     @Transactional(readOnly = true)
-    public Optional<Cliente> getCliente(Integer idCliente) {
-        return clienteRepository.findById(idCliente);
-    }
-    
-    @Transactional
-    public Cliente save(Cliente cliente) {
-        return clienteRepository.save(cliente);
-    }
-
-    @Transactional
-    public void delete(Integer idCliente) {
-        clienteRepository.deleteById(idCliente);
+    @Transactional(readOnly = true)
+    public Optional<Cliente> getCliente(Integer IdCliente){
+        return clienteRepository.findById(IdCliente);
     }
 }
