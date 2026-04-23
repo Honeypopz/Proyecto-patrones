@@ -39,7 +39,7 @@ public class Cliente implements Serializable{
     private String nombre;
     private String direccion;
     private String telefono;
-    private Integer email;
+    private String email;
     
     @OneToMany(mappedBy = "cliente")
     private List<Venta> ventas;

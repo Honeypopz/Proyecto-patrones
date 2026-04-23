@@ -1,0 +1,127 @@
+<!-- Fragmento perfil -->
+<section th:fragment="miPerfil" class="px-4 pb-4">
+    <div class="perfil-panel p-4">
+
+        <div class="perfil-card">
+
+            <!-- encabezado perfil -->
+            <div class="row align-items-start g-4 mb-4">
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="perfil-avatar"></div>
+                        <div>
+                            <h3 class="m-0 fw-normal" th:text="${cliente.nombre}">Maria Gonzales</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-8">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="mini-info-card">
+                                <p class="mini-label mb-1">Miembro desde:</p>
+                                <h3 class="mini-value m-0"
+                                    >
+                                    2026
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="mini-info-card">
+                                <p class="mini-label mb-1">Compras Realizadas:</p>
+                                <h3 class="mini-value m-0" th:text="${ventaTotal}">2</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- datos del usuario -->
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <label class="perfil-label">Nombre Completo</label>
+                    <div class="perfil-field" th:text="${cliente.nombre}">Maria Gonzales</div>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="perfil-label">Email</label>
+                    <div class="perfil-field" th:text="${cliente.email}">Maria@gmail.com</div>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="perfil-label">Teléfono</label>
+                    <div class="perfil-field" th:text="${cliente.telefono}">+506 1231238123</div>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="perfil-label">ID</label>
+                    <div class="perfil-field" th:text="${cliente.idCliente}">11111182828</div>
+                </div>
+
+                <div class="col-12">
+                    <label class="perfil-label">Dirección</label>
+                    <div class="perfil-field" th:text="${cliente.direccion}">Calle 43a, Cartago</div>
+                </div>
+            </div>
+
+            <!-- botón editar -->
+            <div class="mt-4 pt-3 border-top">
+                <button type="button" class="btn btn-primary perfil-btn" data-bs-toggle="modal" data-bs-target="#editarPerfilModal">
+                    Editar información
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal para editar información -->
+    <div class="modal fade" id="editarPerfilModal" tabindex="-1" aria-labelledby="editarPerfilModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content rounded-4">
+                <div class="modal-header border-0 px-4 pt-4">
+                    <h5 class="modal-title fw-bold" id="editarPerfilModalLabel">Actualizar información</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
+                <div class="modal-body px-4 pb-4">
+                    <form th:action="@{/perfil/actualizar}" method="post">
+                        <input type="hidden" name="idCliente" th:value="${cliente.idCliente}"/>
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Nombre Completo</label>
+                                <input type="text" class="form-control" name="nombre" th:value="${cliente.nombre}" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" name="email" th:value="${cliente.email}" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Teléfono</label>
+                                <input type="text" class="form-control" name="telefono" th:value="${cliente.telefono}">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">ID</label>
+                                <input type="text" class="form-control" name="identificacion" th:value="${cliente.idCliente}" readonly>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label">Dirección</label>
+                                <input type="text" class="form-control" name="direccion" th:value="${cliente.direccion}">
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-2 mt-4">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -34,4 +34,9 @@ public class ClienteService {
     public Optional<Cliente> getCliente(Integer IdCliente){
         return clienteRepository.findById(IdCliente);
     }
+    
+    public Cliente save(Cliente cliente) {
+        return clienteRepository.save(cliente);
+}
+    
 }

@@ -18,9 +18,8 @@ import org.springframework.stereotype.Repository;
  * @author Jason
  */
 @Repository
-public interface VentaRepository extends JpaRepository<Venta,Integer>{
-    //para buscar ventas por cliente
-     public List<Venta> findByCliente_IdCliente(Integer idCliente);
-     
-     
+public interface VentaRepository extends JpaRepository<Venta, Integer> {
+
+    List<Venta> findByClienteIdCliente(Integer idCliente);
+
 }

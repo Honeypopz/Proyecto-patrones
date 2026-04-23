@@ -16,15 +16,19 @@
 <header th:fragment="header" class="header custom-header text-white p-3" >
     <div class="d-flex justify-content-between align-items-center"> 
         <h1>Inventario Medico</h1> 
-        <div class=" d-flex align-items-center gap-2">
-            <label class="align-items-end" name="usuario">[[#{general.logged}]]:</label>
-            <select name="usuario" class="form-select" aria-label="Default select example">
-                <option selected>[[#{general.opcion}]]</option>
-                <option>[[#{general.cliente}]]</option>
-                <option>[[#{general.vendedor}]]</option>
-                <option>[[#{general.admin}]]</option>
-            </select>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle bg-blue" type="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                [[#{general.logged}]]
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" th:href="@{/}">[[#{general.cliente}]]</a></li>
+                <li><a class="dropdown-item" th:href="@{/vendedor/dashboard}">[[#{general.vendedor}]]</a></li>
+                <li><a class="dropdown-item" th:href="@{/admin/dashboard}">[[#{general.admin}]]</a></li>
+            </ul>
         </div>
+    </div>
+</header>
     </div>
 
 
@@ -40,9 +44,9 @@
 <section th:fragment="navbar">
    <nav class="nav nav-pills nav-justified p-4">
   
-  <a class="nav-link active" th:href="@{/admin/dashboard}">[[#{general.catalogo}]]</a>
-  <a class="nav-link active" th:href="@{/vendedor/dashboard}">[[#{general.MisCompras}]]</a>
-  <a class="nav-link active" href="#">[[#{general.Perfil}]]</a>
+  <a class="nav-link active" th:href="@{/}">[[#{general.catalogo}]]</a>
+  <a class="nav-link active" th:href="@{/MisCompras/listado(idCliente=1)}">[[#{general.MisCompras}]]</a>
+  <a class="nav-link active" th:href="@{/perfil/listado(idCliente=1)}">[[#{general.Perfil}]]</a>
   
 </nav> 
 </section>
