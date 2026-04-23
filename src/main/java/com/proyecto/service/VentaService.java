@@ -31,7 +31,7 @@ public class VentaService {
     }
     
     @Transactional(readOnly = true)
-    public Optional<Venta> getVenta(Integer IdVenta){
-        return ventaRepository.findById(IdVenta);
+    public List<Venta> getVenta(Integer idCliente) {
+        return ventaRepository.findByClienteIdCliente(idCliente);
     }
 }
