@@ -1,6 +1,69 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<!-- Fragmento #1 que irá en el head de todas las páginas, así se incluye todo lo necesario de configuración-->
+<head th:fragment="head">
+    <title>Venta Equipo Medico</title>
+    <meta charset="UTF-8"/>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>    
+    <script th:src="@{/js/rutinas.js}"></script> 
+    <link th:href="@{/css/estilos.css}" rel="stylesheet"/>
+</head>
+
+
+    <!-- ================== FRAGMENTO #2 HEADER GLOBAL ================== -->
+    <header th:fragment="header" class="custom-header text-white py-3">
+        <div class="container d-flex align-items-center">
+
+            <!-- IZQUIERDA: Título (NO se mueve) -->
+            <h2 class="m-0">Inventario Médico</h2>
+
+            <!-- CENTRO: Navegación bien espaciada -->
+            <nav class="d-flex gap-4 mx-auto">
+
+                <a th:href="@{/}" class="btn btn-outline-light btn-sm">
+                    Catálogo
+                </a>
+
+                <a th:href="@{/admin/dashboard}"
+                   class="btn btn-outline-light btn-sm"
+                   sec:authorize="hasRole('ADMIN')">
+                    Panel Admin
+                </a>
+
+                <a th:href="@{/vendedor/misVentas(idVendedor=2)}"
+                   class="btn btn-outline-light btn-sm"
+                   sec:authorize="hasRole('VENDEDOR')">
+                    Panel Vendedor
+                </a>
+
+
+            </nav>
+
+            <!-- DERECHA: Login / Logout -->
+            <div class="d-flex align-items-center gap-3">
+
+                <div sec:authorize="isAuthenticated()" class="d-flex align-items-center gap-3">
+                    <span>
+                        Logueado como: <b sec:authentication="name"></b>
+                    </span>
+
+                    <form th:action="@{/logout}" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            Logout
+                        </button>
+                    </form>
+                </div>
+
+                <div sec:authorize="!isAuthenticated()">
+                    <a th:href="@{/login}" class="btn btn-light btn-sm">Login</a>
+                </div>
+
+            </div>
+
+        </div>
+    </header>
 
     <!-- ================== HEAD ================== -->
     <head th:fragment="head">
@@ -65,13 +128,27 @@
                    
                 </div>
 
-                <!-- Logout -->
-                <div sec:authorize="isAuthenticated()">
-                    <form th:action="@{/logout}" method="post" class="d-inline">
-                        <button type="submit" class="btn btn-danger btn-sm">
-                            Logout
-                        </button>
-                    </form>
+                <div class="card-footer bg-white d-flex justify-content-between align-text-center">
+                    <div class="fw-bold">
+                        <span class="text-success h5">[[${p.stock}]] </span>
+                        <span th:if="${p.stock > 0}" class="badge text-bg-success ms-2">unidades</span>
+                        <span th:if="${p.stock == 0}" class="badge text-bg-danger ms-2">Agotado!</span>
+                    </div>
+                    
+                      <!-- Botón comprar SOLO si está logueado -->
+                        <form th:action="@{/carrito/agregar}" method="post" class="d-inline"
+                              sec:authorize="isAuthenticated()">
+                            <input type="hidden" th:value="${p.codigo}" name="idProducto"/>
+                            <button type="submit" class="btn btn-sm btn-primary">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </form>
+
+                        <!-- Si no está logueado -->
+                        <a th:href="@{/login}" class="btn btn-sm btn-outline-primary"
+                           sec:authorize="!isAuthenticated()">
+                            Inicia sesión para comprar
+                        </a>
                 </div>
 
                 <!-- Login -->

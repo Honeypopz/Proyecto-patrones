@@ -56,21 +56,24 @@
 
                 <tbody>
 
-                    <tr>
-                        <td>1</td>
-                        <td>Laura</td>
-                        <td>Juan</td>
-                        <td>21/04/26</td>
-                        <td>₡2795</td>
-                    </tr>
+                    <tr th:each="v : ${ventas}">
 
-                    <tr>
-                        <td>2</td>
-                        <td>Carlos</td>
-                        <td>Juan</td>
-                        <td>22/04/26</td>
-                        <td>₡2150</td>
-                    </tr>
+                       
+                        <td th:text="${v.idVenta}">1</td>
+
+                        
+                        <td th:text="${v.cliente.nombre}">Laura</td>
+
+                        
+                        <td th:text="${v.vendedor.nombre}">Juan</td>
+
+                        
+                        <td th:text="${#temporals.format(v.fecha, 'dd/MM/yy')}">21/04/26</td>
+
+                       
+                        <td th:text="${'$' + v.total}">₡2795</td>
+
+                    </tr>   
 
                 </tbody>
 
