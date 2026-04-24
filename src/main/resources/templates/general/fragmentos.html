@@ -1,98 +1,146 @@
-<!-- Fragmento #1 que irá en el head de todas las páginas, así se incluye todo lo necesario de configuración-->
-<head th:fragment="head">
-    <title>Venta Equipo Medico</title>
-    <meta charset="UTF-8"/>
-    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
-    <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
-    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>    
-    <script th:src="@{/js/rutinas.js}"></script> 
-    <link th:href="@{/css/estilos.css}" rel="stylesheet"/>
-</head>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
+    <!-- ================== HEAD ================== -->
+    <head th:fragment="head">
+        <title>Venta Equipo Médico</title>
+        <meta charset="UTF-8"/>
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/rutinas.js}"></script>
+        <link th:href="@{/css/estilos.css}" rel="stylesheet"/>
+    </head>
 
-<!-- Fragmento #2  define el encabezado de las páginas, en concreto el menú y enlaces rápidos -->
-<header th:fragment="header" class="header custom-header text-white p-3" >
-    <div class="d-flex justify-content-between align-items-center"> 
-        <h1>Inventario Medico</h1> 
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle bg-blue" type="button"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                [[#{general.logged}]]
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" th:href="@{/}">[[#{general.cliente}]]</a></li>
-                <li><a class="dropdown-item" th:href="@{/vendedor/dashboard(idVendedor=2)}">[[#{general.vendedor}]]</a></li>
-                <li><a class="dropdown-item" th:href="@{/admin/dashboard}">[[#{general.admin}]]</a></li>
-            </ul>
-        </div>
-    </div>
-</header>
-    </div>
+    <!-- ================== HEADER GLOBAL ================== -->
+    <header th:fragment="header" class="custom-header text-white py-3">
+        <div class="container d-flex align-items-center">
 
+            <!-- IZQUIERDA -->
+            <h2 class="m-0">Inventario Médico</h2>
 
-</header>
+            <!-- CENTRO: navegación -->
+            <nav class="d-flex gap-4 mx-auto">
 
-<!-- mensaje titulo  -->
-<div th:fragment="subtitulo" class="d-flex justify-content-start pt-5 pb-3 px-5" style="background-color: #f0f0f0 ;" >
-    <h3>
-        [[#{general.bienvenida}]]
-    </h3>
-</div>
-<!-- fragmento#3 nav bar  cada seccion  -->
-<section th:fragment="navbar">
-   <nav class="nav nav-pills nav-justified p-4">
-  
-  <a class="nav-link active" th:href="@{/}">[[#{general.catalogo}]]</a>
-  <a class="nav-link active" th:href="@{/MisCompras/listado(idCliente=1)}">[[#{general.MisCompras}]]</a>
-  <a class="nav-link active" th:href="@{/perfil/listado(idCliente=1)}">[[#{general.Perfil}]]</a>
-  
-</nav> 
-</section>
+                <a th:href="@{/}" class="btn btn-outline-light btn-sm">
+                    Catálogo
+                </a>
 
-<!-- Fragmento #4 para el catalogo-->
-<section th:fragment="catalogo" class="container p-4">
-    
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
-        <div th:each="p : ${productos}" class="col">
-            
-            <div class="card h-100 shadow-sm">
+                <a th:href="@{/admin/dashboard}"
+                   class="btn btn-outline-light btn-sm"
+                   sec:authorize="hasRole('ADMIN')">
+                    Panel Admin
+                </a>
 
-                <div class="d-flex justify-content-center align-items-center bg-light p-3" style="height:200px;">
-                    <img th:src="${p.rutaImagen}" class="card-img-top" style="max-height: 100%; max-width: 100%; object-fit: contain;" alt="alt">
+                <a th:href="@{/vendedor/dashboard(idVendedor=2)}"
+                   class="btn btn-outline-light btn-sm"
+                   sec:authorize="hasRole('VENDEDOR')">
+                    Panel Vendedor
+                </a>
+
+                <a th:href="@{/perfil/listado(idCliente=1)}"
+                   class="btn btn-outline-light btn-sm"
+                   sec:authorize="isAuthenticated()">
+                    Mi Perfil
+                </a>
+
+                <a th:href="@{/MisCompras/listado(idCliente=1)}"
+                   class="btn btn-outline-light btn-sm"
+                   sec:authorize="isAuthenticated()">
+                    Mis Compras
+                </a>
+
+            </nav>
+
+            <!-- DERECHA -->
+            <div class="d-flex align-items-center gap-3">
+
+                <!-- Usuario autenticado -->
+                <div sec:authorize="isAuthenticated()" class="text-white small">
+                    <i class="fas fa-user"></i>
+                    <span th:text="${#authentication.name}">usuario</span>
+                   
                 </div>
 
-                <div class="card-header bg-white">
-                    <h5 class="card-title text-center text-truncate mb-0">[[${p.nombre}]] </h5>
-                </div>
-
-                <div class="card-body d-flex flex-column">
-                    <p class="card-text text-muted text-truncate mb-auto">[[${p.codigo}]] </p>
-                </div>
-
-                <div class="card-footer bg-white d-flex justify-content-between align-text-center">
-                    <div class="fw-bold">
-                        <span class="text-success h5">[[${p.stock}]] </span>
-                        <span th:if="${p.stock > 0}" class="badge text-bg-success ms-2">unidades</span>
-                        <span th:if="${p.stock == 0}" class="badge text-bg-danger ms-2">Agotado!</span>
-                    </div>
-                    <form action="" method="" class="d-inline">
-                        <input type="hidden" th:value="${p.codigo}" name="idProducto"/>
-                        <button type="submit" class="btn btn-sm btn-primary" onclick="addCart(this.form)">
-                            <i class="fas fa-cart-plus"></i>
+                <!-- Logout -->
+                <div sec:authorize="isAuthenticated()">
+                    <form th:action="@{/logout}" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            Logout
                         </button>
                     </form>
                 </div>
+
+                <!-- Login -->
+                <div sec:authorize="!isAuthenticated()">
+                    <a th:href="@{/login}" class="btn btn-light btn-sm">Login</a>
+                </div>
+
             </div>
+
         </div>
+    </header>
+
+    <!-- ================== SUBTITULO ================== -->
+    <div th:fragment="subtitulo" class="d-flex justify-content-start pt-4 pb-3 px-5"
+         style="background-color: #f0f0f0;">
+        <h4 class="m-0">Bienvenido al sistema de Inventario Médico</h4>
     </div>
 
+    <!-- ================== CATALOGO ================== -->
+    <section th:fragment="catalogo" class="container p-4">
 
-</section>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
+            <div th:each="p : ${productos}" class="col">
+
+                <div class="card h-100 shadow-sm">
+
+                    <div class="d-flex justify-content-center align-items-center bg-light p-3" style="height:200px;">
+                        <img th:src="${p.rutaImagen}" class="card-img-top"
+                             style="max-height:100%;max-width:100%;object-fit:contain;">
+                    </div>
+
+                    <div class="card-header bg-white">
+                        <h5 class="card-title text-center text-truncate mb-0">
+                            [[${p.nombre}]]
+                        </h5>
+                    </div>
+
+                    <div class="card-body">
+                        <p class="text-muted mb-0">[[${p.codigo}]]</p>
+                    </div>
+
+                    <div class="card-footer bg-white d-flex justify-content-between align-items-center">
+                        <div class="fw-bold">
+                            <span class="text-success">[[${p.stock}]]</span>
+                            <span class="badge text-bg-success ms-2"
+                                  th:if="${p.stock > 0}">unidades</span>
+                            <span class="badge text-bg-danger ms-2"
+                                  th:if="${p.stock == 0}">Agotado</span>
+                        </div>
+
+                        <form>
+                            <input type="hidden" th:value="${p.codigo}" name="idProducto"/>
+                            <button type="button" class="btn btn-sm btn-primary"
+                                    onclick="addCart(this.form)">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
 
-<!-- Fragmento #5 define el footer de las páginas -->
-<footer th:fragment="footer" class="p-2 custom-footer text-white">
-    <p class="lead text-center fw-bold">[[#{plantilla.derechos}]] &COPY;</p>
-</footer>
+    </section>
+
+    <!-- ================== FOOTER ================== -->
+    <footer th:fragment="footer" class="p-2 custom-footer text-white text-center">
+        <p class="lead fw-bold m-0">[[#{plantilla.derechos}]] &copy;</p>
+    </footer>
+
+</html>
