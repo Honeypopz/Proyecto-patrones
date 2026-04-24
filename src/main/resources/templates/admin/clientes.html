@@ -55,18 +55,20 @@
 
                 <tbody>
 
-                    <tr>
-                        <td>Marcela</td>
-                        <td>marcela@email.com</td>
-                        <td>8888-8888</td>
-                        <td>₡3500</td>
-                    </tr>
+                    <tr th:each="c : ${clientes}">
 
-                    <tr>
-                        <td>Ramiro</td>
-                        <td>ramiro@email.com</td>
-                        <td>7777-7777</td>
-                        <td>₡1250</td>
+                        
+                        <td th:text="${c.nombre}">Marcela</td>
+
+                        
+                        <td th:text="${c.email}">correo@email.com</td>
+
+                        
+                        <td th:text="${c.telefono}">8888-8888</td>
+
+                        
+                        <td th:text="${'$' + @ventaService.totalCompradoPorCliente(c.idCliente)}">₡3500</td>
+
                     </tr>
 
                 </tbody>

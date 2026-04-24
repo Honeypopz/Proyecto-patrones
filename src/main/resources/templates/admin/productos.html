@@ -42,41 +42,64 @@
 
             <h4>Lista de Productos</h4>
 
-            <table class="table table-striped">
+    <!-- mensajes -->
+    <div th:if="${todoOk}" class="alert alert-success" th:text="${todoOk}"></div>
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
 
-                <thead>
-                    <tr>
-                        <th>Código</th>
-                        <th>Nombre</th>
-                        <th>Categoría</th>
-                        <th>Precio</th>
-                        <th>Stock</th>
-                    </tr>
-                </thead>
+    <!-- botón agregar -->
+    <div class="mb-3 text-end">
+        <a th:href="@{/admin/producto/nuevo}" class="btn btn-success">
+            <i class="fas fa-plus"></i> Agregar Producto
+        </a>
+    </div>
 
-                <tbody>
+    <table class="table table-striped">
 
-                    <tr>
-                        <td>P-40</td>
-                        <td>Mascarilla</td>
-                        <td>Protección</td>
-                        <td>₡2050</td>
-                        <td>500</td>
-                    </tr>
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
 
-                    <tr>
-                        <td>P-41</td>
-                        <td>Guantes</td>
-                        <td>Protección</td>
-                        <td>₡2050</td>
-                        <td>1000</td>
-                    </tr>
+        <tbody>
 
-                </tbody>
+            <tr th:each="p : ${productos}">
+                <td th:text="${p.codigo}">P-40</td>
+                <td th:text="${p.nombre}">Mascarilla</td>
+                <td th:text="${p.categoria != null ? p.categoria.nombre : 'Sin categoría'}">Protección</td>
+                <td th:text="${'₡' + p.precio}">₡2050</td>
+                <td th:text="${p.stock}">500</td>
 
-            </table>
+                <td>
+                    <!-- editar -->
+                    <a th:href="@{/admin/producto/modificar/{idProducto}(idProducto=${p.idProducto})}"
+                       class="btn btn-warning btn-sm">
+                        Editar
+                    </a>
 
-        </div>
+                    <!-- eliminar -->
+                    <form th:action="@{/admin/producto/eliminar}" method="post" class="d-inline">
+                        <input type="hidden" name="idProducto" th:value="${p.idProducto}"/>
+
+                        <button type="submit"
+                                class="btn btn-danger btn-sm"
+                                onclick="return confirm('¿Seguro que desea eliminar este producto?')">
+                            Eliminar
+                        </button>
+                    </form>
+                </td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
 
     </body>
 </html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{general/fragmentos :: head}"></head>
+
+<body>
+
+<header th:replace="~{general/fragmentos :: header}"></header>
+
+<div class="container mt-4" style="max-width:600px;">
+
+    <h4 th:text="${producto.idProducto == null ? 'Agregar Producto' : 'Modificar Producto'}">
+        Producto
+    </h4>
+
+    <form th:action="@{/admin/producto/guardar}" method="post"
+          enctype="multipart/form-data" th:object="${producto}">
+
+        <input type="hidden" th:field="*{idProducto}"/>
+
+        <div class="mb-3">
+            <label>Código</label>
+            <input type="text" class="form-control" th:field="*{codigo}" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Nombre</label>
+            <input type="text" class="form-control" th:field="*{nombre}" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Categoría</label>
+            <select class="form-control" th:field="*{categoria.idCategoria}" required>
+                <option value="">Seleccionar categoría</option>
+
+                <option th:each="c : ${categorias}"
+                        th:value="${c.idCategoria}"
+                        th:text="${c.nombre}">
+                </option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label>Precio</label>
+            <input type="number" step="0.01" class="form-control" th:field="*{precio}" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Stock</label>
+            <input type="number" class="form-control" th:field="*{stock}" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Imagen</label>
+            <input type="file" class="form-control" name="imagenFile">
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Guardar
+        </button>
+
+        <a th:href="@{/admin/productos}" class="btn btn-secondary">
+            Cancelar
+        </a>
+
+    </form>
+
+</div>
+
+<footer th:replace="~{general/fragmentos :: footer}"></footer>
+
+</body>
+</html>

@@ -105,4 +105,29 @@ public class VentaService {
     public List<Venta> getVentasPorVendedor(Integer idVendedor) {
     return ventaRepository.findByVendedorIdUsuario(idVendedor);
 }
+    
+    @Transactional(readOnly = true)
+    public BigDecimal totalVendidoGlobal() {
+        BigDecimal total = ventaRepository.sumTotalGlobal();
+        return total != null ? total : BigDecimal.ZERO;
+    }
+
+    @Transactional(readOnly = true)
+    public BigDecimal ventasHoy() {
+        BigDecimal total = ventaRepository.sumVentasHoy();
+        return total != null ? total : BigDecimal.ZERO;
+    }
+
+    @Transactional(readOnly = true)
+    public BigDecimal ventasMes() {
+        BigDecimal total = ventaRepository.sumVentasMes();
+        return total != null ? total : BigDecimal.ZERO;
+    }
+    
+    @Transactional(readOnly = true)
+    public BigDecimal totalCompradoPorCliente(Integer idCliente) {
+    BigDecimal total = ventaRepository.sumTotalByCliente(idCliente);
+    return total != null ? total : BigDecimal.ZERO;
+}
+
 }

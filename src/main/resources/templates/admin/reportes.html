@@ -48,7 +48,7 @@
                     <div class="card text-center">
                         <div class="card-body">
                             <h5>Ventas del Mes</h5>
-                            <h2>₡4500</h2>
+                            <h2 th:text="${'$' + ventasMes}">₡4500</h2>
                         </div>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                     <div class="card text-center">
                         <div class="card-body">
                             <h5>Ventas Hoy</h5>
-                            <h2>₡1200</h2>
+                            <h2 th:text="${'$' + ventasHoy}">₡1200</h2>
                         </div>
                     </div>
                 </div>

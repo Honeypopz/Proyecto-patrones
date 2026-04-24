@@ -32,4 +32,15 @@ public interface VentaRepository extends JpaRepository<Venta, Integer> {
     
     List<Venta> findByVendedorIdUsuario(Integer idVendedor);
 
+    @Query("SELECT SUM(v.total) FROM Venta v WHERE v.estado = 'completada'")
+    BigDecimal sumTotalGlobal();
+    
+    @Query("SELECT SUM(v.total) FROM Venta v WHERE v.estado = 'completada' AND v.fecha = CURRENT_DATE")
+    BigDecimal sumVentasHoy();
+
+    @Query("SELECT SUM(v.total) FROM Venta v WHERE v.estado = 'completada' AND MONTH(v.fecha) = MONTH(CURRENT_DATE) AND YEAR(v.fecha) = YEAR(CURRENT_DATE)")
+    BigDecimal sumVentasMes();
+    
+    @Query("SELECT SUM(v.total) FROM Venta v WHERE v.cliente.idCliente = :idCliente AND v.estado = 'completada'")
+    BigDecimal sumTotalByCliente(Integer idCliente);
 }
