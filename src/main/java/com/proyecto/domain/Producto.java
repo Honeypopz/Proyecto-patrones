@@ -43,4 +43,6 @@ public class Producto implements Serializable{
     @JoinColumn(name="categoria_id")
     private Categoria categoria;
     
+    private String rutaImagen;
+    
 }
