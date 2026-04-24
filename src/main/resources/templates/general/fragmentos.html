@@ -23,7 +23,7 @@
             </button>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" th:href="@{/}">[[#{general.cliente}]]</a></li>
-                <li><a class="dropdown-item" th:href="@{/vendedor/dashboard}">[[#{general.vendedor}]]</a></li>
+                <li><a class="dropdown-item" th:href="@{/vendedor/dashboard(idVendedor=2)}">[[#{general.vendedor}]]</a></li>
                 <li><a class="dropdown-item" th:href="@{/admin/dashboard}">[[#{general.admin}]]</a></li>
             </ul>
         </div>

@@ -13,17 +13,17 @@
 
             <div style="display:flex; gap:15px; margin-top:20px; margin-bottom:30px;">
 
-                <a th:href="@{/vendedor/dashboard}"
+                <a th:href="@{/vendedor/dashboard(idVendedor=2)}"
                    style="flex:1; padding:15px; background:#0d6efd; color:white; text-align:center; text-decoration:none; border-radius:6px;">
                     Dashboard
                 </a>
 
-                <a th:href="@{/vendedor/nuevaVenta}"
+                <a th:href="@{/vendedor/nuevaVenta(idVendedor=2)}"
                    style="flex:1; padding:15px; background:#198754; color:white; text-align:center; text-decoration:none; border-radius:6px;">
                     Nueva Venta
                 </a>
 
-                <a th:href="@{/vendedor/misVentas}"
+                <a th:href="@{/vendedor/misVentas(idVendedor=2)}"
                    style="flex:1; padding:15px; background:#dc3545; color:white; text-align:center; text-decoration:none; border-radius:6px;">
                     Mis Ventas
                 </a>
@@ -45,18 +45,25 @@
 
                 <tbody>
 
-                    <tr>
-                        <td>Alberto Alfaro</td>
-                        <td>Guantes médicos</td>
-                        <td>12/03/2026</td>
-                        <td>₡25000</td>
-                    </tr>
+                    <tr th:each="v : ${ventas}">
 
-                    <tr>
-                        <td>María López</td>
-                        <td>Mascarillas</td>
-                        <td>12/03/2026</td>
-                        <td>₡15000</td>
+                        
+                        <td th:text="${v.cliente.nombre}">Cliente</td>
+
+                        
+                        <td>
+                            <span th:each="d, stat : ${v.detalles}">
+                                <span th:text="${d.producto.nombre}"></span>
+                                <span th:if="${!stat.last}">, </span>
+                            </span>
+                        </td>
+
+                        
+                        <td th:text="${v.fecha}">12/03/2026</td>
+
+                        
+                        <td th:text="${'$' + v.total}">₡25000</td>
+                        
                     </tr>
 
                 </tbody>
