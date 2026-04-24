@@ -15,16 +15,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @RequestMapping("/vendedor")
 public class VendedorController {
-    
+
     private final VentaService ventaService;
     private final ClienteService clienteService;
     private final ProductoService productoService;
 
-    public VendedorController(VentaService ventaService,ClienteService clienteService,ProductoService productoService) {
+    public VendedorController(VentaService ventaService,
+            ClienteService clienteService,
+            ProductoService productoService) {
         this.ventaService = ventaService;
         this.clienteService = clienteService;
         this.productoService = productoService;
-    }  
+    }
 
     @GetMapping("/dashboard")
     public String dashboard(Model model, @RequestParam Integer idVendedor) {
@@ -40,21 +42,22 @@ public class VendedorController {
 
         return "vendedor/dashboard";
     }
-    
+
     @GetMapping("/nuevaVenta")
     public String nuevaVenta(Model model, @RequestParam Integer idVendedor) {
-        
+
         model.addAttribute("clientes", clienteService.getClientes());
         model.addAttribute("productos", productoService.getProductos());
         model.addAttribute("idVendedor", idVendedor);
-    return "vendedor/nuevaVenta";
-}
+
+        return "vendedor/nuevaVenta";
+    }
 
     @PostMapping("/registrarVenta")
     public String registrarVenta(VentaForm form) {
-    ventaService.registrarVenta(form);
-            return "redirect:/vendedor/dashboard?idVendedor=" + form.getIdVendedor();
-}
+        ventaService.registrarVenta(form);
+        return "redirect:/vendedor/dashboard?idVendedor=" + form.getIdVendedor();
+    }
 
     @GetMapping("/misVentas")
     public String misVentas(Model model, @RequestParam Integer idVendedor) {
@@ -65,6 +68,6 @@ public class VendedorController {
         model.addAttribute("idVendedor", idVendedor);
 
         return "vendedor/misVentas";
-}
+    }
 
 }
