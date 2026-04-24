@@ -22,6 +22,8 @@ body{
     color: black;
 }
 
+
+
 .custom-footer{
     
     
@@ -31,4 +33,38 @@ body{
     width: 100%;
     
 
+}
+
+
+.nav-pills{
+    
+    background-color: lightgrey;
+    margin: 0 30px;
+    border-radius: 12px;
+    
+    
+}
+
+.nav-pills .nav-link {
+    background-color: #e0e0e0; 
+    color: #333;
+    
+    padding: 6px 12px; 
+    font-size: 14px;
+
+    border-radius: 8px;
+    
+    margin: 0 5px; 
+    
+    transition: 0.3s;
+}
+
+.nav-pills .nav-link:hover {
+    background-color: #6610f2;
+    
+}
+
+.nav-pills .nav-link.active {
+    background-color: #000; 
+    color: #fff;
 }
