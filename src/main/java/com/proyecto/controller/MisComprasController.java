@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/MisCompras")
 public class MisComprasController {
+
     private final VentaService ventaService;
 
     public MisComprasController(VentaService ventaService) {
@@ -30,8 +31,9 @@ public class MisComprasController {
     }
 
     
-@GetMapping("/listado")
+    @GetMapping("/listado")
     public String listado(Model model, @RequestParam Integer idCliente) {
+
         var ventas = ventaService.getVenta(idCliente);
 
         BigDecimal totalGastado = ventas.stream()

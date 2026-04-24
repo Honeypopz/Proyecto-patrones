@@ -36,17 +36,17 @@
 
                 <div style="flex:1; background:#f2f2f2; padding:20px; border-radius:8px; text-align:center;">
                     <h4>Total ventas</h4>
-                    <h2>[[${totalVentas}]]</h2>
+                    <h2 th:text="${totalVentas}">0</h2>
                 </div>
 
                 <div style="flex:1; background:#f2f2f2; padding:20px; border-radius:8px; text-align:center;">
                     <h4>Total vendido</h4>
-                    <h2>$[[${totalVendido}]]</h2>
+                    <h2 th:text="${'₡ ' + totalVendido}">₡0</h2>
                 </div>
 
                 <div style="flex:1; background:#f2f2f2; padding:20px; border-radius:8px; text-align:center;">
                     <h4>Comisión (6%)</h4>
-                    <h2>$[[${comision}]]</h2>
+                    <h2 th:text="${'₡ ' + comision}">₡0</h2>
                 </div>
 
             </div>
