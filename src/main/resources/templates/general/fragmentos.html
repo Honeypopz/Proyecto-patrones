@@ -139,3 +139,36 @@
 <footer th:fragment="footer" class="p-2 custom-footer text-white">
     <p class="lead text-center fw-bold">[[#{plantilla.derechos}]] &COPY;</p>
 </footer>
+
+
+<!-- admin  -->
+
+            <div th:fragment="adminHead" style="display:flex; gap:15px; margin-top:20px; margin-bottom:30px;">
+
+                <a th:href="@{/admin/dashboard}"
+                   style="flex:1; padding:15px; background:#0d6efd; color:white; text-align:center; text-decoration:none; border-radius:6px;">
+                    Dashboard
+                </a>
+
+                <a th:href="@{/admin/productos}"
+                   style="flex:1; padding:15px; background:#198754; color:white; text-align:center; text-decoration:none; border-radius:6px;">
+                    Productos
+                </a>
+
+                <a th:href="@{/admin/vendedores}"
+                   style="flex:1; padding:15px; background:#6f42c1; color:white; text-align:center; text-decoration:none; border-radius:6px;">
+                    Vendedores
+                </a>
+                
+
+                <a th:href="@{/admin/ventas}"
+                   style="flex:1; padding:15px; background:#ffc107; color:black; text-align:center; text-decoration:none; border-radius:6px;">
+                    Ventas
+                </a>
+
+                <a th:href="@{/admin/reportes}"
+                   style="flex:1; padding:15px; background:#dc3545; color:white; text-align:center; text-decoration:none; border-radius:6px;">
+                    Reportes
+                </a>
+
+            </div>

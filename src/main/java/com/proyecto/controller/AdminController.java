@@ -2,6 +2,7 @@ package com.proyecto.controller;
 
 import com.proyecto.service.*;
 import com.proyecto.domain.VentaForm;
+import com.proyecto.domain.Usuario;
 import com.proyecto.domain.Producto;
 import jakarta.validation.Valid;
 import java.util.Locale;
@@ -26,13 +27,15 @@ public class AdminController {
     private final ProductoService productoService;
     private final CategoriaService categoriaService;
     private final MessageSource messageSource;
+    private final UsuarioService usuarioService;
 
-    public AdminController(VentaService ventaService, ClienteService clienteService, ProductoService productoService, CategoriaService categoriaService, MessageSource messageSource) {
+    public AdminController(VentaService ventaService, ClienteService clienteService, ProductoService productoService, CategoriaService categoriaService, MessageSource messageSource,UsuarioService usuarioService) {
         this.ventaService = ventaService;
         this.clienteService = clienteService;
         this.productoService = productoService;
         this.categoriaService = categoriaService;
         this.messageSource = messageSource;
+        this.usuarioService=usuarioService;
     }
 
     @GetMapping("/admin/dashboard")
@@ -123,4 +126,55 @@ public class AdminController {
         return "admin/productoForm";
     }
 
+    
+    
+    
+    //para vendedor tab
+    
+@GetMapping("/admin/vendedores")
+public String vendedores(Model model) {
+
+    System.out.println("ENTRÓ A VENDEDORES");
+
+    var vendedores = usuarioService.getVendedores();
+
+    System.out.println("TOTAL: " + vendedores.size());
+
+    model.addAttribute("vendedores", vendedores);
+    return "admin/vendedores";
+}
+
+@GetMapping("/admin/vendedores/nuevo")
+public String nuevoVendedor(Model model) {
+    model.addAttribute("usuario", new Usuario());
+    model.addAttribute("roles", Usuario.Rol.values());
+    return "admin/vendedorForm";
+}
+    @PostMapping("/admin/vendedores/guardar")
+    public String guardarVendedor(@Valid Usuario usuario, RedirectAttributes redirectAttributes) {
+            
+        usuarioService.save(usuario);
+
+        redirectAttributes.addFlashAttribute("todoOk", "Vendedor guardado correctamente");
+        return "redirect:/admin/vendedores";
+    }
+
+    @GetMapping("/admin/vendedores/modificar/{idUsuario}")
+    public String modificarVendedor(@PathVariable Integer idUsuario, Model model) {
+    Usuario usuario = usuarioService.getUsuario(idUsuario)
+            .orElseThrow(() -> new RuntimeException("Vendedor no encontrado"));
+
+    model.addAttribute("usuario", usuario);
+    model.addAttribute("roles", Usuario.Rol.values());
+
+    return "admin/vendedorForm";
+}
+
+    @PostMapping("/admin/vendedores/eliminar")
+    public String eliminarVendedor(@RequestParam Integer idUsuario, RedirectAttributes redirectAttributes) {
+        usuarioService.delete(idUsuario);
+
+        redirectAttributes.addFlashAttribute("todoOk", "Vendedor eliminado correctamente");
+        return "redirect:/admin/vendedores";
+    }
 }

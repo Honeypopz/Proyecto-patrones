@@ -18,4 +18,7 @@ import org.springframework.stereotype.Repository;
 public interface UsuarioRepository extends JpaRepository<Usuario,Integer>{
     //Para despues en el login
     Optional<Usuario>findById(Integer idUsuario);
+    
+     List<Usuario> findByRol(Usuario.Rol rol);
+    
 }
