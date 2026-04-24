@@ -6,90 +6,90 @@
 </div>
 
 
-        <div th:fragment="misComprasTarjetas" class="dashboard-panel p-4">
+<div th:fragment="misComprasTarjetas" class="dashboard-panel p-4">
 
-            <!-- tarjetas resumen -->
-            <div class="row g-4 mb-4">
-                <div class="col-md-4">
-                    <div class="summary-card">
-                        <p class="summary-title">Total de Compras</p>
-                        <h2 class="summary-value" th:text="${ventaTotal}">0</h2>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="summary-card">
-                        <p class="summary-title">Total Gastado</p>
-                        <h2 class="summary-value">
-                            <span th:text="${totalGastado}"></span>$
-                        </h2>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="summary-card">
-                        <p class="summary-title">Última Compra</p>
-                        <h2 class="summary-value"
-                            th:text="${ultimaCompra != null ? #temporals.format(ultimaCompra, 'd/M/yy') : 'Sin compras'}">
-                            Sin compras
-                        </h2>
-                    </div>
-                </div>
+    <!-- tarjetas resumen -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-4">
+            <div class="summary-card">
+                <p class="summary-title">Total de Compras</p>
+                <h2 class="summary-value" th:text="${ventaTotal}">0</h2>
             </div>
         </div>
 
+        <div class="col-md-4">
+            <div class="summary-card">
+                <p class="summary-title">Total Gastado</p>
+                <h2 class="summary-value">
+                    <span th:text="${totalGastado}"></span>$
+                </h2>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="summary-card">
+                <p class="summary-title">Última Compra</p>
+                <h2 class="summary-value"
+                    th:text="${ultimaCompra != null ? #temporals.format(ultimaCompra, 'd/M/yy') : 'Sin compras'}">
+                    Sin compras
+                </h2>
+            </div>
+        </div>
+    </div>
+</div>
+
 
             
-            <!-- historial -->
-            <div th:fragment="miHistorial" class="history-container">
-                <h3 class="history-title mb-4">Historial de Compras</h3>
+<!-- historial -->
+<div th:fragment="miHistorial" class="history-container">
+    <h3 class="history-title mb-4">Historial de Compras</h3>
 
-                <div th:if="${#lists.isEmpty(ventas)}" class="alert alert-secondary">
-                    No hay compras registradas para este cliente.
-                </div>
+    <div th:if="${#lists.isEmpty(ventas)}" class="alert alert-secondary">
+        No hay compras registradas para este cliente.
+    </div>
 
-                <div th:each="venta, iter : ${ventas}" class="purchase-card mb-3">
-                    <div class="row align-items-center">
-                        <div class="col-md-8">
-                            <p class="purchase-order mb-1">
-                                Orden
-                                <span th:text="${venta.numeroVenta != null ? venta.numeroVenta : iter.count}">1</span>
-                            </p>
+    <div th:each="venta, iter : ${ventas}" class="purchase-card mb-3">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <p class="purchase-order mb-1">
+                    Orden
+                    <span th:text="${venta.numeroVenta != null ? venta.numeroVenta : iter.count}">1</span>
+                </p>
 
-                            <p class="purchase-meta mb-0">
-                                Fecha
-                                <span th:text="${#temporals.format(venta.fecha, 'd/M/yy')}">2/10/26</span>
-                            </p>
+                <p class="purchase-meta mb-0">
+                    Fecha
+                    <span th:text="${#temporals.format(venta.fecha, 'd/M/yy')}">2/10/26</span>
+                </p>
 
-                            <p class="purchase-meta mb-2">
-                                <span th:text="${venta.detalles != null ? venta.detalles.size() : 0}">0</span>
-                                Productos
-                            </p>
+                <p class="purchase-meta mb-2">
+                    <span th:text="${venta.detalles != null ? venta.detalles.size() : 0}">0</span>
+                    Productos
+                </p>
 
-                            <p class="purchase-products mb-0">
-                                <span th:if="${venta.detalles != null and !#lists.isEmpty(venta.detalles)}">
-                                    <span th:each="detalle, stat : ${venta.detalles}">
-                                        <span th:text="${detalle.producto.nombre}">Producto</span>
-                                        <span>
-                                            (
-                                            <span th:text="${detalle.cantidad}">1</span>
-                                            unidades)
-                                        </span>
-                                        <span th:if="${!stat.last}">, </span>
-                                    </span>
-                                </span>
-                                <span th:if="${venta.detalles == null or #lists.isEmpty(venta.detalles)}">
-                                    Sin detalles disponibles
-                                </span>
-                            </p>
-                        </div>
-
-                        <div class="col-md-4 text-md-end mt-3 mt-md-0">
-                            <h2 class="purchase-price mb-3">
-                                <span th:text="${venta.total}">0</span>$
-                            </h2>
-                        </div>
-                    </div>
-                </div>
+                <p class="purchase-products mb-0">
+                    <span th:if="${venta.detalles != null and !#lists.isEmpty(venta.detalles)}">
+                        <span th:each="detalle, stat : ${venta.detalles}">
+                            <span th:text="${detalle.producto.nombre}">Producto</span>
+                            <span>
+                                (
+                                <span th:text="${detalle.cantidad}">1</span>
+                                unidades)
+                            </span>
+                            <span th:if="${!stat.last}">, </span>
+                        </span>
+                    </span>
+                    <span th:if="${venta.detalles == null or #lists.isEmpty(venta.detalles)}">
+                        Sin detalles disponibles
+                    </span>
+                </p>
             </div>
+
+            <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                <h2 class="purchase-price mb-3">
+                    <span th:text="${venta.total}">0</span>$
+                </h2>
+            </div>
+        </div>
+    </div>
+</div>
         
