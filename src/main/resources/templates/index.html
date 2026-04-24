@@ -2,17 +2,16 @@
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:th="http://www.thymeleaf.org"
     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
->
-    <head th:replace="~{general/fragmentos :: head}"/>
+    >
+    <head th:replace="~{general/fragmentos :: head}"></head>
 
-    
     <body>
-        <header th:replace="~{general/fragmentos :: header}"/>
-        <div th:replace="~{general/fragmentos :: subtitulo}"/>
-        <section th:replace="~{general/fragmentos :: navbar}"/>
-        <section th:replace="~{general/fragmentos :: catalogo}"/>
-   
-    
-        <footer th:replace="~{general/fragmentos :: footer}"/>
+        <header th:replace="~{general/fragmentos :: header}"></header>
+
+        <div th:replace="~{general/fragmentos :: subtitulo}"></div>
+
+        <section th:replace="~{general/fragmentos :: catalogo}"></section>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
     </body>
 </html>

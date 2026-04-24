@@ -14,7 +14,7 @@ public class HomeController {
         this.productoService = productoService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/home")
     public String home(Model model){
         var productos = productoService.getProductos();
         model.addAttribute("productos", productos);

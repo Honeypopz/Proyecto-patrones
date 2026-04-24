@@ -57,6 +57,15 @@
 
             <!-- DERECHA -->
             <div class="d-flex align-items-center gap-3">
+
+                <!-- Usuario autenticado -->
+                <div sec:authorize="isAuthenticated()" class="text-white small">
+                    <i class="fas fa-user"></i>
+                    <span th:text="${#authentication.name}">usuario</span>
+                   
+                </div>
+
+                <!-- Logout -->
                 <div sec:authorize="isAuthenticated()">
                     <form th:action="@{/logout}" method="post" class="d-inline">
                         <button type="submit" class="btn btn-danger btn-sm">
@@ -64,9 +73,12 @@
                         </button>
                     </form>
                 </div>
+
+                <!-- Login -->
                 <div sec:authorize="!isAuthenticated()">
                     <a th:href="@{/login}" class="btn btn-light btn-sm">Login</a>
                 </div>
+
             </div>
 
         </div>
@@ -80,7 +92,7 @@
 
     <!-- ================== CATALOGO ================== -->
     <section th:fragment="catalogo" class="container p-4">
-    
+
         <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
             <div th:each="p : ${productos}" class="col">
 
